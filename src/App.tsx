@@ -1,9 +1,7 @@
+import { Outlet } from "react-router-dom";
+
 const App = () => {
-  return (
-    <div className='text-red'>
-      Food Chat
-    </div>
-  )
+  return <Outlet />
 }
 
 export default App;
