@@ -1,6 +1,12 @@
-const AuthLayout = () => {
+import { ReactNode } from "react";
+
+type Props = {
+  children: ReactNode;
+}
+
+const AuthLayout: React.FC<Props> = ({ children }) => {
   return (
-    <div>AuthLayout</div>
+    <div className='p-10 h-screen bg-white'>{children}</div>
   )
 }
 
