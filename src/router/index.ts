@@ -3,6 +3,8 @@ import App from '../App';
 import Home from '../pages/Home';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
+import NotFound from '../pages/NotFound';
+import Chat from '../pages/Chat';
 
 export const routes: RouteObject[] = [
   {
@@ -14,12 +16,20 @@ export const routes: RouteObject[] = [
         Component: Home,
       },
       {
+        path: '/chat/:chatId',
+        Component: Chat,
+      },
+      {
         path: '/signin',
         Component: SignIn,
       },
       {
         path: '/signup',
         Component: SignUp,
+      },
+      {
+        path: '*',
+        Component: NotFound,
       },
     ]
   },

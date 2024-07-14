@@ -1,12 +1,11 @@
 import React, { ReactNode } from 'react';
-import Header from './Header';
 import Sidebar from './Sidebar';
 
 type Props = {
   children: ReactNode;
 }
 
-const ChatLayout: React.FC<Props> = ({ children }) => {
+const HomeLayout: React.FC<Props> = ({ children }) => {
   return (
     <div className='flex min-h-screen w-full bg-secondary'>
       <div className='w-1/5'>
@@ -14,10 +13,8 @@ const ChatLayout: React.FC<Props> = ({ children }) => {
       </div>
 
       <div className='w-4/5'>
-        <Header />
-
         <main>
-          <div className='px-10 pt-24'>
+          <div className='p-10'>
             {children}
           </div>
         </main>
@@ -26,4 +23,4 @@ const ChatLayout: React.FC<Props> = ({ children }) => {
   )
 }
 
-export default ChatLayout;
+export default HomeLayout;

@@ -1,6 +1,8 @@
+import AuthLayout from "../components/layouts/AuthLayout";
+
 const SignIn = () => {
   return (
-    <div>SignIn</div>
+    <AuthLayout>SignIn</AuthLayout>
   )
 }
 
