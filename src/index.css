@@ -13,3 +13,15 @@
     background: #DEDFE0;
   }
 }
+
+.scrollbar-transparent {
+  &::-webkit-scrollbar {
+    width: 4px;
+    cursor: default;
+  }
+   
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: transparent;
+  }
+}
