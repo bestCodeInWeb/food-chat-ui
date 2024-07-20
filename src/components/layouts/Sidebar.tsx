@@ -1,24 +1,22 @@
 import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import SidebarItem from './SidebarItem';
+import { getSidebarItems } from '../../utils/helpers';
+import { useAppSelector } from '../../redux/hooks';
+
+export type Dialog = {
+  id: string,
+  chatId: string,
+  senderId: string,
+  recipientId: string,
+  senderName: string,
+  recipientName: string,
+  content: string,
+  timestamp: string,
+  status: string
+}
 
 const Sidebar = () => {
-  const dialogs = [
-    { id: '1', name: 'Oleg Beliy', image: 'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1447,w_2572,x_178,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1657047557/Screen_Shot_2022-07-05_at_2.39.01_PM_gf8abz', messages: ['Hello'] },
-    { id: '2', name: 'Oleg Beliy', image: 'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1447,w_2572,x_178,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1657047557/Screen_Shot_2022-07-05_at_2.39.01_PM_gf8abz', messages: ['how are you?'] },
-    { id: '3', name: 'Oleg Beliy', image: 'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1447,w_2572,x_178,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1657047557/Screen_Shot_2022-07-05_at_2.39.01_PM_gf8abz', messages: ['I wanna complain about the noise in the house'] },
-    { id: '4', name: 'Oleg Beliy', image: 'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1447,w_2572,x_178,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1657047557/Screen_Shot_2022-07-05_at_2.39.01_PM_gf8abz', messages: ['What are you doing?'] },
-    { id: '5', name: 'Oleg Beliy', image: 'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1447,w_2572,x_178,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1657047557/Screen_Shot_2022-07-05_at_2.39.01_PM_gf8abz', messages: ['Ho-ho-ho'] },
-    { id: '6', name: 'Oleg Beliy', image: 'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1447,w_2572,x_178,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1657047557/Screen_Shot_2022-07-05_at_2.39.01_PM_gf8abz', messages: ['Hello'] },
-    { id: '7', name: 'Oleg Beliy', image: 'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1447,w_2572,x_178,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1657047557/Screen_Shot_2022-07-05_at_2.39.01_PM_gf8abz', messages: ['how are you?'] },
-    { id: '8', name: 'Oleg Beliy', image: 'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1447,w_2572,x_178,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1657047557/Screen_Shot_2022-07-05_at_2.39.01_PM_gf8abz', messages: ['I wanna complain about the noise in the house'] },
-    { id: '9', name: 'Oleg Beliy', image: 'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1447,w_2572,x_178,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1657047557/Screen_Shot_2022-07-05_at_2.39.01_PM_gf8abz', messages: ['What are you doing?'] },
-    { id: '10', name: 'Oleg Beliy', image: 'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1447,w_2572,x_178,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1657047557/Screen_Shot_2022-07-05_at_2.39.01_PM_gf8abz', messages: ['Ho-ho-ho'] },
-    { id: '11', name: 'Oleg Beliy', image: 'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1447,w_2572,x_178,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1657047557/Screen_Shot_2022-07-05_at_2.39.01_PM_gf8abz', messages: ['Hello'] },
-    { id: '12', name: 'Oleg Beliy', image: 'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1447,w_2572,x_178,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1657047557/Screen_Shot_2022-07-05_at_2.39.01_PM_gf8abz', messages: ['how are you?'] },
-    { id: '13', name: 'Oleg Beliy', image: 'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1447,w_2572,x_178,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1657047557/Screen_Shot_2022-07-05_at_2.39.01_PM_gf8abz', messages: ['I wanna complain about the noise in the house'] },
-    { id: '14', name: 'Oleg Beliy', image: 'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1447,w_2572,x_178,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1657047557/Screen_Shot_2022-07-05_at_2.39.01_PM_gf8abz', messages: ['What are you doing?'] },
-    { id: '15', name: 'Oleg Beliy', image: 'https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1447,w_2572,x_178,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1657047557/Screen_Shot_2022-07-05_at_2.39.01_PM_gf8abz', messages: ['Ho-ho-ho'] },
-  ];
+  const dialogs = useAppSelector(state => state.dialogs.items);
 
   return (
     <div 
@@ -39,7 +37,7 @@ const Sidebar = () => {
       </div>
       
       <ul className='px-1 overflow-y-auto mt-5 scrollbar-md'>
-        {dialogs.map(item => (
+        {getSidebarItems(dialogs).map(item => (
           <SidebarItem key={item.id} item={item} />
         ))}
       </ul>

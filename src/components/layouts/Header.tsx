@@ -1,6 +1,8 @@
 import { EllipsisVerticalIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { useAppSelector } from '../../redux/hooks';
 
 const Header = () => {
+  const { selectedName } = useAppSelector(state => state.dialogs);
   return (
     <header className='fixed left-[20%] right-0 top-0 z-10 py-4 pr-12 pl-8 flex items-center justify-between bg-white'>
       <div className='flex gap-3 items-center'>
@@ -13,7 +15,7 @@ const Header = () => {
         </div>
 
         <div>
-          <p className='text-lg font-medium text-dark'>Alex Moroz</p>
+          <p className='text-lg font-medium text-dark'>{selectedName}</p>
           <span className='text-primary'>Online</span>
         </div>
       </div>

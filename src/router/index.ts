@@ -1,4 +1,4 @@
-import { RouteObject, createBrowserRouter } from 'react-router-dom';
+import { RouteObject, createBrowserRouter, createHashRouter } from 'react-router-dom';
 import App from '../App';
 import Home from '../pages/Home';
 import SignIn from '../pages/SignIn';
@@ -35,6 +35,6 @@ export const routes: RouteObject[] = [
   },
 ];
 
-const router = createBrowserRouter(routes);
+const router = createHashRouter(routes);
 
 export default router;
