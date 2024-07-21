@@ -33,7 +33,7 @@ const Chat = () => {
       timestamp: new Date().toISOString(),
       status: 'DELIVERED',
       senderId: 'qmsgyxm1j',
-      senderName: 'Fixed User', 
+      senderName: 'Fixed User',
       recipientName: foundDialog.recipientName === 'Fixed User' ? foundDialog.senderName : foundDialog.recipientName,
       recipientId: foundDialog.recipientId === 'qmsgyxm1j' ? foundDialog.senderId : foundDialog.recipientId
     }
@@ -45,6 +45,7 @@ const Chat = () => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === 'Enter') {
       onMessageSendClick();
+      event.preventDefault();
     }
   }
 
