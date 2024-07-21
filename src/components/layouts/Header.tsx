@@ -1,8 +1,20 @@
 import { EllipsisVerticalIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { useAppSelector } from '../../redux/hooks';
+import ContextMenu from '../UI/ContextMenu';
+import { useState } from 'react';
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { selectedName } = useAppSelector(state => state.dialogs);
+
+  const menuOptions = [
+    { text: 'Option 1', onSelect: () => {} },
+    { text: 'Option 2', onSelect: () => {} },
+    { text: 'Option 3', onSelect: () => {} },
+    { text: 'Option 4', onSelect: () => {} },
+    { text: 'Option 5', onSelect: () => {} },
+  ];
+
   return (
     <header className='fixed left-[20%] right-0 top-0 z-10 py-4 pr-12 pl-8 flex items-center justify-between bg-white'>
       <div className='flex gap-3 items-center'>
@@ -30,7 +42,16 @@ const Header = () => {
           <MagnifyingGlassIcon className='absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400' />
         </div>
 
-        <EllipsisVerticalIcon className='size-6 text-grey-5 hover:text-grey-1 transition duration-300 cursor-pointer' />
+        <ContextMenu
+          state={isMenuOpen}
+          setState={setIsMenuOpen}
+          items={menuOptions}
+        >
+          <EllipsisVerticalIcon
+            className='size-6 text-grey-5 hover:text-grey-1 transition duration-300 cursor-pointer'
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          />
+        </ContextMenu>
       </div>
     </header>
   )
