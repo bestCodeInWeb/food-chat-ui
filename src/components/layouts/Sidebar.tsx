@@ -2,7 +2,7 @@ import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import SidebarItem from './SidebarItem';
 import { getSidebarItems } from '../../utils/helpers';
 import { useAppSelector } from '../../redux/hooks';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ContextMenu from '../UI/ContextMenu';
 
 export type Dialog = {
@@ -17,7 +17,12 @@ export type Dialog = {
   status: string
 }
 
-const Sidebar = () => {
+interface ISidebar {
+  setIsSidebarOpen: (value: boolean) => void;
+  isSidebarOpen: boolean;
+}
+
+const Sidebar: React.FC<ISidebar> = ({ setIsSidebarOpen, isSidebarOpen }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dialogs = useAppSelector(state => state.dialogs.items);
 
@@ -31,8 +36,8 @@ const Sidebar = () => {
 
   return (
     <div 
-      className='fixed flex flex-col left-0 top-0 w-1/5 
-      h-screen border-r border-grey-3 bg-white z-[2]'
+      className={`fixed flex flex-col left-0 top-0 ${isSidebarOpen ? 'w-full md:w-[300px]' : 'w-0 md:w-[300px]'} 
+      h-screen border-r border-grey-3 bg-white z-[2]`}
     >
       <div className='px-4 py-4 flex items-center gap-3'>
         <ContextMenu
@@ -58,7 +63,7 @@ const Sidebar = () => {
       
       <ul className='px-1 overflow-y-auto mt-5 scrollbar-md'>
         {getSidebarItems(dialogs).map(item => (
-          <SidebarItem key={item.id} item={item} />
+          <SidebarItem key={item.id} item={item} setIsSidebarOpen={setIsSidebarOpen} />
         ))}
       </ul>
     </div>
