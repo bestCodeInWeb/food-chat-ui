@@ -1,37 +1,37 @@
-import { RouteObject, createBrowserRouter, createHashRouter } from 'react-router-dom';
-import App from '../App';
-import Home from '../pages/Home';
-import SignIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
-import NotFound from '../pages/NotFound';
-import Chat from '../pages/Chat';
+import { RouteObject, createHashRouter } from "react-router-dom";
+import App from "../App";
+import Home from "../pages/Home";
+import SignIn from "../pages/SignIn";
+import SignUp from "../pages/SignUp";
+import NotFound from "../pages/NotFound";
+import Chat from "../pages/Chat";
 
 export const routes: RouteObject[] = [
   {
-    path: '/',
+    path: "/",
     Component: App,
     children: [
       {
-        path: '/',
+        path: "/",
         Component: Home,
       },
       {
-        path: '/chat/:chatId',
+        path: "/chat/:chatId",
         Component: Chat,
       },
       {
-        path: '/signin',
+        path: "/signin",
         Component: SignIn,
       },
       {
-        path: '/signup',
+        path: "/signup",
         Component: SignUp,
       },
       {
-        path: '*',
+        path: "*",
         Component: NotFound,
       },
-    ]
+    ],
   },
 ];
 
