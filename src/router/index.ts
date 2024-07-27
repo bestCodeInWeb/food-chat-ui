@@ -35,6 +35,6 @@ export const routes: RouteObject[] = [
   },
 ];
 
-const router = createHashRouter(routes);
+const router = createBrowserRouter(routes);
 
 export default router;

@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom";
 import AuthLayout from "../components/layouts/AuthLayout";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
+import { login } from "../api/auth";
 
 const SignIn = () => {
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!username.trim() || !password.trim()) return;
+
+    const response = await login(username, password);
+    console.log('Response: ', response);
   }
 
   return (
@@ -18,9 +27,11 @@ const SignIn = () => {
           <div className='mb-5'>
             <label className='text-lg text-grey-1 font-semibold'>Email</label>
             <input
-              type='email'
+              type='text'
               className='w-full px-4 py-2 rounded-xl border border-grey-3'
-              placeholder='Email'
+              placeholder='Username'
+              value={username}
+              onChange={e => setUsername(e.target.value)}
             />
           </div>
 
@@ -30,6 +41,8 @@ const SignIn = () => {
               type='password'
               className='w-full px-4 py-2 rounded-xl border border-grey-3'
               placeholder='Password'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
             />
           </div>
 

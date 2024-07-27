@@ -2,6 +2,8 @@ import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import SidebarItem from './SidebarItem';
 import { getSidebarItems } from '../../utils/helpers';
 import { useAppSelector } from '../../redux/hooks';
+import { useState } from 'react';
+import ContextMenu from '../UI/ContextMenu';
 
 export type Dialog = {
   id: string,
@@ -16,7 +18,16 @@ export type Dialog = {
 }
 
 const Sidebar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dialogs = useAppSelector(state => state.dialogs.items);
+
+  const menuOptions = [
+    { text: 'Option 1', onSelect: () => {} },
+    { text: 'Option 2', onSelect: () => {} },
+    { text: 'Option 3', onSelect: () => {} },
+    { text: 'Option 4', onSelect: () => {} },
+    { text: 'Option 5', onSelect: () => {} },
+  ];
 
   return (
     <div 
@@ -24,7 +35,16 @@ const Sidebar = () => {
       h-screen border-r border-grey-3 bg-white z-[2]'
     >
       <div className='px-4 py-4 flex items-center gap-3'>
-        <Bars3Icon className='size-7 text-grey-5 hover:text-grey-1 transition duration-300 cursor-pointer' />
+        <ContextMenu
+          state={isMenuOpen}
+          setState={setIsMenuOpen}
+          items={menuOptions}
+        >
+          <Bars3Icon
+            className='size-7 text-grey-5 hover:text-grey-1 transition duration-300 cursor-pointer'
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          />
+        </ContextMenu>
 
         <div className='relative'>
           <input

@@ -8,7 +8,7 @@ type Props = {
 
 const ChatLayout: React.FC<Props> = ({ children }) => {
   return (
-    <div className='flex min-h-screen w-full bg-secondary'>
+    <div className='flex min-h-screen w-full bg-gradient-to-bl from-blue-2 to-indigo-400'>
       <div className='w-1/5'>
         <Sidebar />
       </div>
