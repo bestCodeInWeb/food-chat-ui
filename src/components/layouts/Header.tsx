@@ -22,13 +22,15 @@ const Header: React.FC<IHeader> = ({ setIsSidebarOpen, isSidebarOpen }) => {
 
   return (
     <header className={
-      `${isSidebarOpen ? 'w-0' : 'fixed left-0 md:left-[300px] right-0 top-0 z-10 py-4 pr-12 pl-8 flex items-center justify-between bg-white'}`
+      `${isSidebarOpen 
+        ? 'w-0 md:w-[calc(100%-300px)] md:fixed md:left-[300px] md:right-0 md:top-0 md:z-10 md:py-4 md:pr-12 md:pl-8 md:flex md:items-center md:justify-between md:bg-white' 
+        : 'fixed left-0 md:left-[300px] right-0 top-0 z-10 py-4 pr-12 pl-8 flex items-center justify-between bg-white'}`
     }>
       <div className='flex gap-3 items-center'>
         <ArrowLeftIcon 
           className={`
             ${!isSidebarOpen ? 'md:hidden' : 'hidden'} size-5 cursor-pointer 
-            text-grey-6 hover:text-grey-1 transition duration-300 font-semibold
+            text-grey-6 hover:text-grey-1 transition font-semibold
           `} 
           onClick={() => setIsSidebarOpen(true)} 
         />

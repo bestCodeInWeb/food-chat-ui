@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import Sidebar from './Sidebar';
 
 type Props = {
@@ -6,13 +6,15 @@ type Props = {
 }
 
 const HomeLayout: React.FC<Props> = ({ children }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
   return (
     <div className='flex min-h-screen w-full bg-secondary'>
-      <div className='w-1/5'>
-        <Sidebar />
+      <div className={`${isSidebarOpen ? 'w-full' : 'w-0 md:w-[300px]'}`}>
+        <Sidebar setIsSidebarOpen={setIsSidebarOpen} isSidebarOpen={isSidebarOpen} />
       </div>
 
-      <div className='w-4/5'>
+      <div className={`${isSidebarOpen ? 'w-0 md:w-full' : 'w-full'}`}>
         <main>
           <div className='p-10'>
             {children}

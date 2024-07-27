@@ -7,11 +7,11 @@ type Props = {
 }
 
 const ChatLayout: React.FC<Props> = ({ children }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   return (
     <div className='flex min-h-screen w-full bg-gradient-to-bl from-blue-2 to-indigo-400'>
-      <div className={`${isSidebarOpen ? 'w-full' : 'w-0 md:w-[300px]'}`}>
+      <div className={`${isSidebarOpen ? 'w-full md:w-[300px]' : 'w-0 md:w-[300px]'}`}>
         <Sidebar setIsSidebarOpen={setIsSidebarOpen} isSidebarOpen={isSidebarOpen} />
       </div>
 

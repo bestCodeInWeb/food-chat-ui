@@ -51,7 +51,7 @@ const Sidebar: React.FC<ISidebar> = ({ setIsSidebarOpen, isSidebarOpen }) => {
           />
         </ContextMenu>
 
-        <div className='relative'>
+        <div className='relative w-full'>
           <input
             type='text'
             className='pr-4 pl-10 py-2 bg-grey-3 rounded-xl w-full'
