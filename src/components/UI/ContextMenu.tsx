@@ -1,11 +1,13 @@
 import React, { useRef, useEffect, ReactElement } from 'react';
 import ReactDOM from 'react-dom';
+import ContextMenuItem from './ContextMenuItem';
 
 export interface IContextMenuItem {
   text: string;
   onSelect(item: IContextMenuItem): void;
   color?: string;
   subItems?: IContextMenuItem[];
+  icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 }
 
 export interface IContextMenu {
@@ -63,19 +65,7 @@ const ContextMenu: React.FC<IContextMenu> = ({ state, setState, children, items 
             style={getPositions(activatorRef.current!)}
           >
             {items.map(item => (
-              <div
-                key={item.text}
-                className={
-                  [
-                    'px-[20px] py-[15px]',
-                    'cursor-pointer hover:bg-grey-4 active:bg-grey-3 transition duration-300',
-                    item.color ? `text-${item.color}`: '',
-                  ].join(' ')
-                }
-                onClick={() => item.onSelect(item)}
-              >
-                {item.text}
-              </div>
+              <ContextMenuItem key={item.text} item={item} />
             ))}
           </div>,
           document.body
