@@ -5,6 +5,8 @@ import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
 import NotFound from "../pages/NotFound";
 import Chat from "../pages/Chat";
+import Profile from "../pages/Profile";
+import Settings from "../pages/Settings";
 
 export const routes: RouteObject[] = [
   {
@@ -26,6 +28,14 @@ export const routes: RouteObject[] = [
       {
         path: "/signup",
         Component: SignUp,
+      },
+      {
+        path: "/profile/:id",
+        Component: Profile,
+      },
+      {
+        path: "/settings",
+        Component: Settings,
       },
       {
         path: "*",

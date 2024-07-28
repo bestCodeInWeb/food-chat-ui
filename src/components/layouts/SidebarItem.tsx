@@ -7,9 +7,10 @@ import { selectName } from "../../redux/dialogsReducer";
 
 interface ISidebarItem {
   item: Dialog;
+  setIsSidebarOpen: (value: boolean) => void;
 }
 
-const SidebarItem: React.FC<ISidebarItem> = ({ item }) => {
+const SidebarItem: React.FC<ISidebarItem> = ({ item, setIsSidebarOpen }) => {
   const { chatId } = useParams();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -18,6 +19,7 @@ const SidebarItem: React.FC<ISidebarItem> = ({ item }) => {
     navigate(`/chat/${item.chatId}`);
     const name = item.recipientId === 'qmsgyxm1j' ? item.senderName : item.recipientName
     dispatch(selectName(name));
+    setIsSidebarOpen(false);
   }
 
   return (

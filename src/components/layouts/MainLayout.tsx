@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
 
@@ -7,17 +7,19 @@ type Props = {
 }
 
 const ChatLayout: React.FC<Props> = ({ children }) => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+
   return (
     <div className='flex min-h-screen w-full bg-gradient-to-bl from-blue-2 to-indigo-400'>
-      <div className='w-1/5'>
-        <Sidebar />
+      <div className={`${isSidebarOpen ? 'w-full md:w-[300px]' : 'w-0 md:w-[300px]'}`}>
+        <Sidebar setIsSidebarOpen={setIsSidebarOpen} isSidebarOpen={isSidebarOpen} />
       </div>
 
-      <div className='w-4/5'>
-        <Header />
+      <div className={`${isSidebarOpen ? 'w-0 md:w-full' : 'w-full'}`}>
+        <Header setIsSidebarOpen={setIsSidebarOpen} isSidebarOpen={isSidebarOpen} />
 
         <main>
-          <div className='px-10 pt-24'>
+          <div className='pl-0 md:pl-20 pt-24'>
             {children}
           </div>
         </main>
