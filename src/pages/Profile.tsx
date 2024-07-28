@@ -1,10 +1,10 @@
-import HomeLayout from "../components/layouts/HomeLayout";
+import SecondaryLayout from "../components/layouts/SecondaryLayout";
 
 const Profile = () => {
   return (
-    <HomeLayout>
+    <SecondaryLayout>
       Profile
-    </HomeLayout>
+    </SecondaryLayout>
   )
 }
 

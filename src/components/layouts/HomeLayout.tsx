@@ -10,13 +10,13 @@ const HomeLayout: React.FC<Props> = ({ children }) => {
 
   return (
     <div className='flex min-h-screen w-full bg-secondary'>
-      <div className={`${isSidebarOpen ? 'w-full' : 'w-0 md:w-[300px]'}`}>
+      <div className={`flex-shrink-0 transition-all duration-300 ${isSidebarOpen ? 'w-[300px]' : 'w-0'}`}>
         <Sidebar setIsSidebarOpen={setIsSidebarOpen} isSidebarOpen={isSidebarOpen} />
       </div>
 
-      <div className={`${isSidebarOpen ? 'w-0 md:w-full' : 'w-full'}`}>
+      <div className='flex-grow transition-all duration-300'>
         <main>
-          <div className='p-10'>
+          <div className='pl-0'>
             {children}
           </div>
         </main>

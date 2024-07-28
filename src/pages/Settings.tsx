@@ -1,10 +1,10 @@
-import HomeLayout from "../components/layouts/HomeLayout";
+import SecondaryLayout from "../components/layouts/SecondaryLayout";
 
 const Settings = () => {
   return (
-    <HomeLayout>
+    <SecondaryLayout>
       Settings
-    </HomeLayout>
+    </SecondaryLayout>
   )
 }
 
