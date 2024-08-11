@@ -1,9 +1,14 @@
-import { EllipsisVerticalIcon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { EllipsisVerticalIcon, MagnifyingGlassIcon, ArrowLeftIcon } from '@heroicons/react/24/solid';
 import { useAppSelector } from '../../redux/hooks';
 import ContextMenu from '../UI/ContextMenu';
 import { useState } from 'react';
 
-const Header = () => {
+interface IHeader {
+  setIsSidebarOpen: (value: boolean) => void;
+  isSidebarOpen: boolean;
+}
+
+const Header: React.FC<IHeader> = ({ setIsSidebarOpen, isSidebarOpen }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { selectedName } = useAppSelector(state => state.dialogs);
 
@@ -16,8 +21,20 @@ const Header = () => {
   ];
 
   return (
-    <header className='fixed left-[20%] right-0 top-0 z-10 py-4 pr-12 pl-8 flex items-center justify-between bg-white'>
+    <header className={
+      `${isSidebarOpen 
+        ? 'w-0 md:w-[calc(100%-300px)] md:fixed md:left-[300px] md:right-0 md:top-0 md:z-10 md:py-4 md:pr-12 md:pl-8 md:flex md:items-center md:justify-between md:bg-white' 
+        : 'fixed left-0 md:left-[300px] right-0 top-0 z-10 py-4 pr-12 pl-8 flex items-center justify-between bg-white'}`
+    }>
       <div className='flex gap-3 items-center'>
+        <ArrowLeftIcon 
+          className={`
+            ${!isSidebarOpen ? 'md:hidden' : 'hidden'} size-5 cursor-pointer 
+            text-grey-6 hover:text-grey-1 transition font-semibold
+          `} 
+          onClick={() => setIsSidebarOpen(true)} 
+        />
+
         <div className='w-12 h-12 rounded-full overflow-hidden'>
           <img
             src='https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_euli9k,h_1447,w_2572,x_178,y_0/dpr_1.5/c_limit,w_1044/fl_lossy,q_auto/v1657047557/Screen_Shot_2022-07-05_at_2.39.01_PM_gf8abz'

@@ -1,5 +1,5 @@
 import React from "react";
-import { Dialog } from "../layouts/Sidebar";
+import { Dialog } from "../../layouts/Sidebar";
 
 interface IMessageItem {
   dialog: Dialog;

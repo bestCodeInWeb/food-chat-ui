@@ -1,9 +1,10 @@
-import { Bars3Icon, MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { Bars3Icon, MagnifyingGlassIcon, Cog6ToothIcon, UserCircleIcon, HomeIcon } from '@heroicons/react/24/solid';
 import SidebarItem from './SidebarItem';
 import { getSidebarItems } from '../../utils/helpers';
 import { useAppSelector } from '../../redux/hooks';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ContextMenu from '../UI/ContextMenu';
+import { useNavigate } from 'react-router-dom';
 
 export type Dialog = {
   id: string,
@@ -17,22 +18,26 @@ export type Dialog = {
   status: string
 }
 
-const Sidebar = () => {
+interface ISidebar {
+  setIsSidebarOpen: (value: boolean) => void;
+  isSidebarOpen: boolean;
+}
+
+const Sidebar: React.FC<ISidebar> = ({ setIsSidebarOpen, isSidebarOpen }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dialogs = useAppSelector(state => state.dialogs.items);
+  const navigate = useNavigate();
 
   const menuOptions = [
-    { text: 'Option 1', onSelect: () => {} },
-    { text: 'Option 2', onSelect: () => {} },
-    { text: 'Option 3', onSelect: () => {} },
-    { text: 'Option 4', onSelect: () => {} },
-    { text: 'Option 5', onSelect: () => {} },
+    { text: 'Home', onSelect: () => navigate('/'), icon: HomeIcon },
+    { text: 'Profile', onSelect: () => navigate('/profile/qmsgyxm1j'), icon: UserCircleIcon },
+    { text: 'Settings', onSelect: () => navigate('/settings'), icon: Cog6ToothIcon },
   ];
 
   return (
-    <div 
-      className='fixed flex flex-col left-0 top-0 w-1/5 
-      h-screen border-r border-grey-3 bg-white z-[2]'
+    <div
+      className={`fixed flex flex-col left-0 top-0 ${isSidebarOpen ? 'w-full md:w-[300px]' : 'w-0 md:w-[300px]'} 
+      h-screen border-r border-grey-3 bg-white z-[2]`}
     >
       <div className='px-4 py-4 flex items-center gap-3'>
         <ContextMenu
@@ -46,7 +51,7 @@ const Sidebar = () => {
           />
         </ContextMenu>
 
-        <div className='relative'>
+        <div className='relative w-full'>
           <input
             type='text'
             className='pr-4 pl-10 py-2 bg-grey-3 rounded-xl w-full'
@@ -58,7 +63,7 @@ const Sidebar = () => {
       
       <ul className='px-1 overflow-y-auto mt-5 scrollbar-md'>
         {getSidebarItems(dialogs).map(item => (
-          <SidebarItem key={item.id} item={item} />
+          <SidebarItem key={item.id} item={item} setIsSidebarOpen={setIsSidebarOpen} />
         ))}
       </ul>
     </div>
