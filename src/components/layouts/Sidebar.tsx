@@ -1,4 +1,4 @@
-import { Bars3Icon, MagnifyingGlassIcon, Cog6ToothIcon, UserCircleIcon } from '@heroicons/react/24/solid';
+import { Bars3Icon, MagnifyingGlassIcon, Cog6ToothIcon, UserCircleIcon, HomeIcon } from '@heroicons/react/24/solid';
 import SidebarItem from './SidebarItem';
 import { getSidebarItems } from '../../utils/helpers';
 import { useAppSelector } from '../../redux/hooks';
@@ -29,6 +29,7 @@ const Sidebar: React.FC<ISidebar> = ({ setIsSidebarOpen, isSidebarOpen }) => {
   const navigate = useNavigate();
 
   const menuOptions = [
+    { text: 'Home', onSelect: () => navigate('/'), icon: HomeIcon },
     { text: 'Profile', onSelect: () => navigate('/profile/qmsgyxm1j'), icon: UserCircleIcon },
     { text: 'Settings', onSelect: () => navigate('/settings'), icon: Cog6ToothIcon },
   ];

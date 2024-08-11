@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { PaperAirplaneIcon } from '@heroicons/react/24/solid';
 import ChatLayout from "../components/layouts/MainLayout";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import MessageItem from "../components/chat/MessageItem";
+import MessageItem from "../components/business/chat/MessageItem";
 import { useEffect, useRef, useState } from "react";
 import { Dialog } from "../components/layouts/Sidebar";
 import { addMessage } from "../redux/dialogsReducer";

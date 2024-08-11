@@ -13,14 +13,14 @@ const ContextMenuItem: React.FC<IContextMenu> = ({ item }) => {
       className={
         [
           'px-[20px] py-[15px] flex items-center',
-          'cursor-pointer hover:bg-grey-4 active:bg-grey-3 transition duration-300',
-          item.color ? `text-${item.color}` : '',
+          'cursor-pointer hover:bg-gray-500/20 active:bg-black/10 transition duration-300',
+          item.color ? `text-${item.color}` : 'text-white',
         ].join(' ')
       }
       onClick={() => item.onSelect(item)}
     >
       {!!Icon && (
-        <Icon className='size-6 text-grey-1 mr-3' />
+        <Icon className='size-6 text-white mr-3' />
       )}
       
       {item.text}

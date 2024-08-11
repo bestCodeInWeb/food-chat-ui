@@ -61,7 +61,8 @@ const ContextMenu: React.FC<IContextMenu> = ({ state, setState, children, items 
         ReactDOM.createPortal(
           <div
             ref={optionsRef}
-            className='absolute z-10 bg-white rounded-xl overflow-hidden shadow-soft w-72 border border-grey-3'
+            className='absolute z-10 backdrop-blur-sm bg-gray-900/80 rounded-xl overflow-hidden 
+            shadow-md w-72 border border-grey-3'
             style={getPositions(activatorRef.current!)}
           >
             {items.map(item => (

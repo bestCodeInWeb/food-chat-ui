@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8080/realms/food-user/protocol/openid-connect/token';
+const BASE_URL = 'https://localhost:8443/realms/alex/protocol/openid-connect/token';
+// 'https://localhost:8443/admin/realms/alex/users'
+// 'http://<domain.com>/auth/realms/<realm-name>/protocol/openid-connect/registrations'
 
 export const login = (username: string, password: string) => {
   return axios.post(`${BASE_URL}`, {
@@ -10,8 +12,28 @@ export const login = (username: string, password: string) => {
     password
   }, {
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded;application/json;charset=UTF-8',
-      'Access-Control-Allow-Headers': 'X-Custom-Header, Upgrade-Insecure-Requests'
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
+}
+
+export const register = async (username: string, password: string) => {
+  const data = await login('alex-admin', 'alex-admin');
+
+  return axios.post('https://localhost:8443/admin/realms/alex/users', {
+    username,
+    enabled: true,
+    credentials: [
+      {
+        type: 'password',
+        value: password,
+        temporary: false
+      }
+    ]
+  }, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${data.data.access_token}`
     }
   });
 }
